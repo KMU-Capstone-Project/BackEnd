@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <nav class="navbar" th:fragment="navbar">
+<!--        나중에 로고 이미지 파일로 바꾸셈-->
+        <div class="navbar-logo">
+            <a th:href="@{'/'}" style="text-decoration: none">
+                <span class="black">SPOT</span><span class="yellow">LIGHT</span>
+            </a>
+        </div>
+
+        <div class="search-bar">
+            <form action="/search" method="POST">
+                <input name="searchText" type="text" placeholder="찾고 싶은 상품을 입력해보세요">
+            </form>
+        </div>
+
+        <div class="nav-links" sec:authorize="isAnonymous()">
+            <a th:href="@{'/login'}">로그인</a>
+            <a th:href="@{'/signup'}">회원가입</a>
+        </div>
+        <div class="nav-links" sec:authorize="isAuthenticated()">
+            <a th:href="@{'/write'}">글 쓰기</a>
+            <a th:href="@{'/my-page'}">마이페이지</a>
+        </div>
+    </nav>
+
+</body>
+</html>

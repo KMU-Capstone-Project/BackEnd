@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/nav.css}">
+
+</head>
+<body>
+    <div th:replace="~{nav.html :: navbar}"></div>
+
+    <form action="/edit" method="POST">
+        <input name="id" th:value="${newData.id}" style="display: none">
+        <input name="title" th:value="${newData.title}">
+        <input name="price" th:value="${newData.price}">
+        <input name="brand" th:value="${newData.brand}">
+        <input name="link" th:value="${newData.link}">
+        <button type="submit">전송</button>
+    </form>
+
+</body>
+</html>

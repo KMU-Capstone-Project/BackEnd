@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="/write.css" rel="stylesheet">
+</head>
+<body>
+    <form action="/add" method="POST">
+        <input name="title" placeholder="상품명 입력">
+        <input name="price" placeholder="가격 입력">
+        <input name="brand" placeholder="브랜드 입력">
+
+        <button type="submit">전송</button>
+    </form>
+
+    <input type="file" onchange="getURL(this)">
+    <img src="">
+    <script>
+        async function getURL(e) {
+            let name = encodeURIComponent(e.files[0].name)
+            let result = await fetch('/presigned-url?filename=' + name)
+
+            result = await result.text()
+
+            let uploadRes = await fetch(result, {
+                method: 'PUT',
+                headers: {
+                    'x-ms-blob-type': 'BlockBlob', // 필수 헤더
+                    'Content-Type': e.files[0].type // 선택 사항이지만 권장
+                },
+                body: e.files[0]
+            });
+
+            if (uploadRes.ok) {
+
+                document.querySelector('img').src = uploadRes.url
+            }
+        }
+    </script>
+
+</body>
+</html>

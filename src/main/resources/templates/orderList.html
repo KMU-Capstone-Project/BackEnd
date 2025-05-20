@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid;
+        }
+        th, td {
+            border: 1px solid;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>주문내역 페이지임</h1>
+    <div>
+
+        <table>
+            <tr>
+                <th>상품이름</th>
+                <th>가격(원)</th>
+                <th>유저 아이디</th>
+                <th>닉네임</th>
+                <th>개수</th>
+                <th>총 합(원)</th>
+            </tr>
+            <tr th:each="i : ${salesDtoList}">
+                <td th:text="${i.itemName}"></td>
+                <td th:text="${i.price}"></td>
+                <td th:text="${i.username}"></td>
+                <td th:text="${i.displayName}"></td>
+                <td th:text="${i.count}"></td>
+                <td th:text="${i.price * i.count}"></td>
+            </tr>
+
+        </table>
+
+
+    </div>
+
+</body>
+</html>

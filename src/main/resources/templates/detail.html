@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/nav.css}">
+    <link rel="stylesheet" th:href="@{/detail.css}">
+
+</head>
+<body>
+    <div th:replace="~{nav.html :: navbar}"></div>
+
+    <div class="detail-wrapper">
+        <div class="detail-data">
+            <div class="detail-left">
+                <div class="content-image">
+                    <img src="https://placehold.co/300">
+                </div>
+            </div>
+            <div class="detail-right">
+                <div class="content-info">
+                    <h2 th:text="${itemData.title}">바지</h2>
+                    <p th:text="${#numbers.formatInteger(itemData.price, 3, 'COMMA')} + '원'">100만원</p>
+                    <p th:text="${itemData.brand}">브랜드</p>
+                </div>
+            </div>
+        </div>
+
+        <form action="/order" method="POST">
+            <input name="title" th:value="${itemData.title}">
+            <input name="price" th:value="${itemData.price}">
+            <input name="count" placeholder="count">
+            <button style="text-align : left">주문하기</button>
+        </form>
+
+        <div class="detail-comment">
+            <div class="content-comment" th:each="i : ${commentData}">
+                <h2 th:text="${i.username}"></h2>
+                <p th:text="${i.content}"></p>
+                <p th:text="${i.created}"></p>
+            </div>
+
+            <div class="content-writer">
+                <form action="/comment" method="POST">
+                    <input name="content">
+                    <input name="parent" th:value="${itemData.id}" style="display : none">
+                    <button type="submit">전송</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
