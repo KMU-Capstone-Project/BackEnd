@@ -1,0 +1,100 @@
+.mypage-body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+/* 왼쪽 메뉴 */
+.menu-wrapper {
+  flex: 1;
+  min-width: 260px;
+  max-width: 320px;
+  margin-left: 102px;
+}
+
+/* 오른쪽 전체 영역 */
+.right-section-wrapper {
+  flex: 2;
+  min-width: 300px;
+  max-width: 800px; /* 확장 */
+  margin-left: -150px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* 프로필과 채팅을 가로로 정렬 */
+.profile-chat-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* 프로필 */
+.profile-wrapper {
+  flex: 1;
+  min-width: 300px;
+  transition: all 0.3s ease;
+}
+
+/* 채팅 */
+.chat-wrapper {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* 대여상품 */
+.rent-product-wrapper {
+  width: 100%;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .mypage-body {
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .menu-wrapper {
+    flex: 1;
+    min-width: 260px;
+    max-width: 320px;
+  }
+
+  .right-section-wrapper {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .profile-chat-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .mypage-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-wrapper,
+  .right-section-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .profile-wrapper,
+  .chat-wrapper {
+    width: 100%;
+  }
+
+  .profile-chat-container {
+    flex-direction: column;
+  }
+}

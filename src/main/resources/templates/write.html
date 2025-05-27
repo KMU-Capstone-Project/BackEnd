@@ -14,6 +14,8 @@
         <input name="price" placeholder="가격 입력">
         <input name="brand" placeholder="브랜드 입력">
 
+        <input type="hidden" name="imageUrl">
+
         <button type="submit">전송</button>
     </form>
 
@@ -36,8 +38,11 @@
             });
 
             if (uploadRes.ok) {
-
+                // 이미지 src 설정
                 document.querySelector('img').src = uploadRes.url
+
+                // hidden input에 이미지 url 저장
+                document.querySelector('input[name="imageUrl"]').value = result.split('?')[0];
             }
         }
     </script>

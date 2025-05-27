@@ -1,50 +1,401 @@
+/* =======================
+  기본 스타일
+======================= */
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.login-container {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+.login-container,
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 60px 0;
+  box-sizing: border-box;
 }
 
-h2 {
+/* =======================
+  SPOTLIGHT 로고
+======================= */
+.spotlight-logo {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.black {
+  color: #222;
+}
+
+.light {
+  background: linear-gradient(to right, #fff 0%, #fdfd96 20%, #ffef8f 40%, #fdfd96 60%, #fff 100%);
+  background-size: 200% auto;
+  background-clip: text; /* ✅ 표준 속성 추가 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 2.5s linear infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* =======================
+  로그인 / 회원가입 / 계정찾기 박스
+======================= */
+.login-box,
+.signup-box,
+.account-box {
+  width: 90%;
+  max-width: 400px;
+  padding: 32px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* =======================
+  입력창 스타일
+======================= */
+.input-wrap {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  margin: 0 auto 16px;
+  padding-bottom: 4px;
+  width: 90%;
+  max-width: 360px;
+}
+
+.input-wrap input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px 0;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+}
+
+/* =======================
+  오류 메시지
+======================= */
+.error-message {
+  color: #e53935;
+  font-size: 14px;
+  margin: 8px auto;
+  max-width: 360px;
+  text-align: left;
+}
+
+/* =======================
+  버튼 스타일
+======================= */
+.btn {
+  width: 90%;
+  max-width: 360px;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 16px auto 0;
+  display: block;
+}
+
+.login-btn {
+  background-color: #fae100;
+  color: #000;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmer 2.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+/* =======================
+  툴팁 및 간편로그인
+======================= */
+.remember-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 auto 20px;
+  width: 90%;
+  max-width: 360px;
+  font-size: 14px;
+  color: #333;
+}
+
+.tooltip-wrapper {
+  margin-left: auto;
+  position: relative;
+}
+
+.tooltip-icon {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #999;
+  cursor: pointer;
+}
+
+.tooltip-box {
+  position: absolute;
+  top: 24px;
+  left: -20px;
+  width: 260px;
+  padding: 12px;
+  background-color: #333;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 6px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: #ffe100;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* =======================
+  하단 링크
+======================= */
+.login-links-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto 0;
+  width: 90%;
+  max-width: 360px;
+  font-size: 14px;
+}
+
+.login-links-row a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+}
+
+.right-links {
+  display: flex;
+  gap: 8px;
+}
+
+.divider {
+  color: #ccc;
+}
+
+/* =======================
+  회원가입 전용 섹션 제목
+======================= */
+.form-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+  margin: 0 auto 12px auto;
+  text-align: left;
+  max-width: 360px;
+  width: 90%;
+}
+
+/* =======================
+  계정 찾기 페이지
+======================= */
+.account-title,
+.account-desc,
+.gray-btn {
+  max-width: 360px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.account-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 12px;
+}
+
+.account-desc {
+  font-size: 14px;
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.form-group {
+  margin-top: 24px;
+  max-width: 360px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.help-icon {
+  background: #aaa;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.input-with-counter {
+  position: relative;
+}
+
+.input-with-counter input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 2px solid #eee;
+  outline: none;
+}
+
+.char-count {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* 전화번호 */
+.phone-input-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 4px;
+}
+
+.country-code {
+  font-size: 16px;
+  border: none;
+  background: transparent;
+  color: #555;
+  padding: 8px 0;
+}
+
+.phone-input-wrap input {
+  flex: 1;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+}
+
+/* 회색 버튼 */
+.gray-btn {
+  background-color: #f2f2f2;
+  color: #222;
+  font-weight: bold;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  margin: 32px auto 0;
+  display: block;
+  cursor: pointer;
+}
+
+/* =======================
+  반응형 대응
+======================= */
+@media (max-width: 480px) {
+  .spotlight-logo {
+    font-size: 48px;
     text-align: center;
+  }
+
+  .btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .input-wrap input {
+    font-size: 15px;
+  }
+
+  .login-links-row {
+    flex-direction: row;     /* ✅ 한 줄 유지 */
+    justify-content: center; /* ✅ 가운데 정렬 */
+    flex-wrap: nowrap;       /* ✅ 줄바꿈 방지 */
+    gap: 8px;
+    font-size: 13px;
+  }
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+.divider {
+  display: inline-block;
+  padding: 0 4px;
+  font-size: 14px;
+  line-height: 1;        /* ✅ 줄간격 없애기 */
+  vertical-align: middle; /* ✅ 정렬 중앙으로 */
+  color: #ccc;
 }
 
-label {
-    margin-top: 10px;
-}
-
-input {
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
+.divider-line {
+  display: inline-block;
+  height: 14px;
+  width: 1px;
+  background-color: #ccc;
+  margin: 0 8px;
+  vertical-align: middle;
 }

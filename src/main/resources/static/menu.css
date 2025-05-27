@@ -1,0 +1,67 @@
+/* src/css/myPage/myPage_menu.css */
+.mypage-menu {
+  width: 240px;             /* ✅ 고정 폭 */
+  margin: 0;                /* ✅ 여백 제거 */
+  padding: 0;               /* ✅ 안쪽 여백 제거 */
+  box-sizing: border-box;   /* ✅ 패딩 포함 너비 계산 */
+}
+
+.menu-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.menu-section {
+    text-decoration-line: none;
+  margin-bottom: 40px;
+  text-align: left;
+
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #111;
+}
+
+.menu-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-section li {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid #ccc;
+  width: fit-content;
+  min-width: 100px;
+  max-width: 160px;
+  margin: 32px 0;
+}
+
+@media (max-width: 600px) {
+  .menu-title {
+    font-size: 22px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .menu-section li {
+    font-size: 15px;
+  }
+
+  .section-divider {
+    width: 80px;
+  }
+}

@@ -1,0 +1,54 @@
+.rent-product-wrapper {
+  margin-top: 20px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.rent-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.rent-tabs {
+  display: flex;
+  gap: 32px;
+  font-size: 15px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+}
+
+.rent-tabs div {
+  color: #aaa;
+  cursor: pointer;
+}
+
+.rent-tabs .active {
+  color: #000;
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+
+.rent-sort {
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.rent-sort .active {
+  font-weight: bold;
+  color: #000;
+}
+
+.rent-list {
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+  margin-top: 32px;
+}

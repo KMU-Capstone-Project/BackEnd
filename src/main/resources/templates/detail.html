@@ -17,7 +17,8 @@
         <div class="detail-data">
             <div class="detail-left">
                 <div class="content-image">
-                    <img src="https://placehold.co/300">
+                    <img th:if="${!itemData.images.isEmpty()}" th:src="${itemData.images[0].url}" width="300" height="300">
+                    <img th:if="${itemData.images.isEmpty()}" src="https://placehold.co/300x300" width="300" height="300">
                 </div>
             </div>
             <div class="detail-right">
@@ -27,6 +28,11 @@
                     <p th:text="${itemData.brand}">브랜드</p>
                 </div>
             </div>
+        </div>
+
+        <div class="product-desc">
+            <h3>상품 소개</h3>
+            <p>한 번밖에 입지 않았고 체육 대회나 축제 때 인기 좋습니다.</p>
         </div>
 
         <form action="/order" method="POST">

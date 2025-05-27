@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f9f9f9;
+}
+
+.detail-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    border-radius: 12px;
+}
+
+.detail-data {
+    display: flex;
+    gap: 40px;
+}
+
+.detail-left .content-image img {
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.detail-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-info h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.content-info .price {
+    font-size: 20px;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.content-info p {
+    font-size: 16px;
+    margin: 6px 0;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.wish {
+    background-color: #e0e0e0;
+}
+
+.buy {
+    background-color: #ffd600;
+}
+
+.buy:hover {
+    background-color: #ffcc00;
+}
+
+.product-desc {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.product-desc h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product-desc p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* 댓글 영역 */
+.detail-comment {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.content-comment {
+    background-color: #fafafa;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.content-comment h2 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.content-comment p {
+    margin: 2px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.content-writer form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.content-writer input[name="content"] {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.content-writer button {
+    padding: 10px;
+    background-color: #00c853;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.content-writer button:hover {
+    background-color: #00b342;
+}

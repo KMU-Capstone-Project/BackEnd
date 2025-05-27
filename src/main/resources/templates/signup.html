@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,27 +9,76 @@
     <link href="/signup.css" rel="stylesheet">
 </head>
 <body>
-    <div class="register-container">
-        <h2>회원가입</h2>
-        <form action="/register" method="post">
-            <label for="username">아이디:</label>
-            <input type="text" id="username" name="username" required placeholder="4~15자 이내로 입력해주세요.">
+<!--    <div class="register-container">-->
+<!--        <h2>회원가입</h2>-->
+<!--        <form action="/register" method="post">-->
+<!--            <label for="username">아이디:</label>-->
+<!--            <input type="text" id="username" name="username" required placeholder="4~15자 이내로 입력해주세요.">-->
 
-            <label for="password">비밀번호:</label>
-            <input type="password" id="password" name="password" required placeholder="최소 6자 이상(알파벳, 숫자 필수)">
+<!--            <label for="password">비밀번호:</label>-->
+<!--            <input type="password" id="password" name="password" required placeholder="최소 6자 이상(알파벳, 숫자 필수)">-->
 
-            <label for="email">이메일:</label>
-            <input type="email" id="email" name="email" required placeholder="example@spotlight.kr">
+<!--            <label for="email">이메일:</label>-->
+<!--            <input type="email" id="email" name="email" required placeholder="example@spotlight.kr">-->
 
-            <label for="phone">전화번호:</label>
-            <input type="tel" id="phone" name="phone" required placeholder="전화번호(-제외)">
+<!--            <label for="phone">전화번호:</label>-->
+<!--            <input type="tel" id="phone" name="phone" required placeholder="전화번호(-제외)">-->
 
-            <label for="displayName">닉네임:</label>
-            <input type="text" id="displayName" name="displayName" required placeholder="닉네임을 20자 이하로 입력해주세요.">
+<!--            <label for="displayName">닉네임:</label>-->
+<!--            <input type="text" id="displayName" name="displayName" required placeholder="닉네임을 20자 이하로 입력해주세요.">-->
 
-            <button type="submit">가입</button>
+<!--            <button type="submit">가입</button>-->
 
+<!--        </form>-->
+<!--    </div>-->
+
+
+
+    <div class="login-container">
+        <h1 class="spotlight-logo" th:onclick="|window.location.href='@{/}'|" style="cursor: pointer;">
+            <span class="black">SPOT</span>
+            <span class="light animated">LIGHT</span>
+        </h1>
+
+        <form class="signup-box" th:action="@{/register}" method="post">
+            <h2>가입을 시작합니다!</h2>
+
+            <div class="form-section">
+                <h3 class="form-title">회원 정보</h3>
+                <div class="input-wrap">
+                    <input type="text" name="displayName" placeholder="이름" required>
+                </div>
+                <div class="input-wrap">
+                    <input type="text" name="email" placeholder="이메일" required>
+                </div>
+                <div class="input-wrap phone-check">
+                    <input type="String" name="phone" placeholder="휴대폰 번호" required />
+                    <button type="button" class="check-btn" onclick="alert('인증번호가 발송되었습니다!')">인증 요청</button>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-title">계정</h3>
+                <div class="input-wrap id-check">
+                    <input type="text" name="username" placeholder="아이디 입력" required />
+                    <button type="button" class="check-btn" onclick="alert('아이디는 사용 가능합니다.')">중복 확인</button>
+                </div>
+                <div class="input-wrap">
+                    <input type="password" name="password" placeholder="비밀번호 입력" required />
+                </div>
+                <div class="input-wrap">
+                    <input type="password" name="confirmPw" placeholder="비밀번호 확인" required />
+                </div>
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" id="agree" name="agreement" required />
+                <label for="agree">이용 약관에 동의합니다.</label>
+            </div>
+
+            <button type="submit" class="btn login-btn shine-button">회원가입 완료</button>
         </form>
     </div>
+
 </body>
 </html>

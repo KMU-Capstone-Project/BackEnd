@@ -2,6 +2,8 @@ package com.capstone.spotlight.item;
 
 import com.capstone.spotlight.comment.Comment;
 import com.capstone.spotlight.comment.CommentRepository;
+import com.capstone.spotlight.image.Image;
+import com.capstone.spotlight.image.ImageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,15 +24,23 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final CommentRepository commentRepository;
     private final BlobStorageService blobStorageService;
+    private final ImageRepository imageRepository;
 
     @GetMapping("/")
     String getMain(Model model) {
         List<Item> result = itemRepository.findAll();
+        List<Map<String, String>> banners = List.of(
+                Map.of("src", "/bannerImages/banner1.jpg", "alt", "첫 번째 배너"),
+                Map.of("src", "/bannerImages/banner2.jpg", "alt", "두 번째 배너")
+                // Map.of("src", "/images/banner3.jpg", "alt", "세 번째 배너")
+        );
+        model.addAttribute("banners", banners);
 
         model.addAttribute("items", result);
 
-        return "main.html";
+        return "mainpage.html";
     }
+
 
     @GetMapping("/write")
     String write() {
@@ -38,13 +48,20 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    String addPost(String title, Integer price, String brand) {
+    String addPost(String title, Integer price, String brand, @RequestParam String imageUrl) {
         Item item = new Item();
         item.setTitle(title);
         item.setPrice(price);
         item.setBrand(brand);
 
         itemRepository.save(item);
+
+
+        Image image = new Image();
+        image.setUrl(imageUrl);
+        image.setItem(item);
+
+        imageRepository.save(image);
 
         return "redirect:/";
     }
@@ -124,10 +141,14 @@ public class ItemController {
     // 이미지 업로드 요청
     @GetMapping("/presigned-url")
     @ResponseBody
-    String getURL(@RequestParam String filename) {
+    String getURL(@RequestParam String filename, Model model) {
         var result = blobStorageService.generatePresignedUploadUrl("test/" + filename);
+
+
+        System.out.println(result);
 
         return result;
     }
+
 
 }

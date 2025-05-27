@@ -16,4 +16,5 @@ public class CustomUser extends User {
     ) {
         super(username, password, authorities);
     }
+
 }

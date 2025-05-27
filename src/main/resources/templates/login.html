@@ -11,22 +11,38 @@
 </head>
 <body>
 <div class="login-container">
-    <h2>로그인</h2>
+    <h1 class="spotlight-logo" onclick="location.href='/'" style="cursor: pointer;">
+        <span class="black">SPOT</span>
+        <span class="light animated">LIGHT</span>
+    </h1>
 
     <div th:if="${param.error}">
         <h5>아이디 또는 비밀번호가 틀렸습니다.</h5>
     </div>
 
-    <form action="/login" method="post">
-        <label for="username">아이디:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">비밀번호:</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">로그인</button>
-
-    </form>
+    <div class="login-box">
+        <form action="/login" method="post">
+            <div class="input-wrap">
+                <input type="text" id="username" name="username" placeholder="SPOTLIGHT 아이디" required>
+            </div>
+            <div class="input-wrap password-line">
+                <input type="password" id="password" name="password" placeholder="비밀번호" required>
+            </div>
+<!--            <div class="remember-wrap">-->
+<!--                <input type="checkbox" id="remember" name="remember" />-->
+<!--                <label for="remember">간편로그인 정보 저장</label>-->
+<!--            </div>-->
+            <button type="submit" class="btn login-btn shine-button">로그인</button>
+        </form>
+        <div class="login-links-row">
+            <a href="/signup" class="left-link">회원가입</a>
+            <div class="right-links single-line">
+                <a href="/find-id">아이디 찾기</a>
+                <span class="divider-line"></span>
+                <a href="/find-password">비밀번호 찾기</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

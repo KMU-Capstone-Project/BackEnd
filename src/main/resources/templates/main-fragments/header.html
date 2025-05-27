@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div th:fragment="header">
+    <div class="mypage-wrapper">
+        <div class="mypage-header">
+            <div class="logo" onclick="location.href='/'" style="cursor: pointer;">
+                <span class="black">SPOT</span>
+                <span class="light animated">LIGHT</span>
+            </div>
+
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <form action="/search" method="POST">
+                    <input name="searchText" type="text" placeholder="찾고 싶은 상품을 입력해보세요">
+                </form>
+            </div>
+
+            <div class="nav-links">
+                <div class="nav-item" id="chatMenu" sec:authorize="isAuthenticated()">
+                    💬 채팅하기
+                    <a th:href="@{'/write'}">글 쓰기</a>
+
+                </div>
+                <span class="divider-line" id="divider1" style="display: none;"></span>
+
+                <div class="nav-item" id="rentMenu" style="display: none;" onclick="location.href='/write'">📦 대여하기</div>
+                <span class="divider-line" id="divider2" style="display: none;"></span>
+
+<!--                로그인 O 경우-->
+                <div class="nav-item user-menu" id="userMenu" onclick="toggleDropdown(event)" sec:authorize="isAuthenticated()">
+                    👤 마이 페이지
+                    <div id="dropdownMenu" class="dropdown" style="display: none;">
+                        <div class="dropdown-item">
+                            <a th:href="@{'/my-page'}">마이페이지</a>
+                        </div>
+                        <div class="dropdown-item" onclick="logout()">
+                            <a th:href="@{'/logout'}">로그아웃</a>
+                        </div>
+                    </div>
+                </div>
+
+<!--                로그인 X 경우-->
+                <div class="nav-item" id="loginLink" sec:authorize="isAnonymous()">
+                    <a th:href="@{'/login'}" style="text-decoration: none;">👤 로그인</a>
+                    <a th:href="@{'/signup'}" style="text-decoration: none;">회원가입</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+          const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+
+          document.getElementById('loginLink').style.display = isLoggedIn ? 'none' : 'block';
+          document.getElementById('userMenu').style.display = isLoggedIn ? 'block' : 'none';
+          document.getElementById('chatMenu').style.display = isLoggedIn ? 'block' : 'none';
+          document.getElementById('rentMenu').style.display = isLoggedIn ? 'block' : 'none';
+          document.getElementById('divider1').style.display = isLoggedIn ? 'inline-block' : 'none';
+          document.getElementById('divider2').style.display = isLoggedIn ? 'inline-block' : 'none';
+        }
+
+        function toggleDropdown(event) {
+          event.stopPropagation();
+          const menu = document.getElementById('dropdownMenu');
+          menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function logout() {
+          localStorage.removeItem('loggedIn');
+          location.href = '/';
+        }
+
+        document.addEventListener('mousedown', function (e) {
+          const dropdown = document.getElementById('dropdownMenu');
+          const userMenu = document.getElementById('userMenu');
+          if (dropdown && !userMenu.contains(e.target)) {
+            dropdown.style.display = 'none';
+          }
+        });
+    </script>
+</div>
+</body>
+</html>

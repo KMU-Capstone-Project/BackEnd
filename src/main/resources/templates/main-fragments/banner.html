@@ -1,0 +1,64 @@
+<!-- templates/fragments/banner.html -->
+<!-- 순수 banner fragment 만 정의 -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div th:fragment="banner" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div id="bannerSlider"
+         style="position: relative; width:100%; height:300px; overflow:hidden;">
+        <div th:each="banner, stat : ${banners}"
+             class="banner-slide"
+             th:classappend="${stat.index == 0} ? 'active' : ''"
+             style="position:absolute; top:0; left:0;
+                width:100%; height:100%;
+                opacity:0; transition:opacity 1s;">
+            <!-- th:alt 중괄호 하나만 남김 -->
+            <img th:src="@{${banner.src}}"
+                 th:alt="${banner.alt}"
+                 style="width:100%; height:100%; object-fit:cover;" />
+        </div>
+        <button onclick="prevSlide()"
+                style="position:absolute; left:16px; top:50%;
+                   transform:translateY(-50%);
+                   background:rgba(0,0,0,0.3); color:white;
+                   border:none; padding:8px; cursor:pointer; z-index:2;">
+            &#10094;
+        </button>
+        <button onclick="nextSlide()"
+                style="position:absolute; right:16px; top:50%;
+                   transform:translateY(-50%);
+                   background:rgba(0,0,0,0.3); color:white;
+                   border:none; padding:8px; cursor:pointer; z-index:2;">
+            &#10095;
+        </button>
+    </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const slides = document.querySelectorAll('#bannerSlider .banner-slide');
+        let current = 0;
+        function showSlide(i) {
+            slides.forEach((s, idx) => s.style.opacity = idx === i ? '1' : '0');
+        }
+        function nextSlide() {
+            current = (current + 1) % slides.length; showSlide(current);
+        }
+        function prevSlide() {
+            current = (current - 1 + slides.length) % slides.length; showSlide(current);
+        }
+        showSlide(0);
+        setInterval(nextSlide, 5000);
+        /*]]>*/
+    </script>
+</div>
+
+</body>
+</html>

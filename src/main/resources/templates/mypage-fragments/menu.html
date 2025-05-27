@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div th:fragment="menu">
+        <div class="mypage-menu">
+            <div class="menu-title">마이 페이지</div>
+
+            <div class="menu-section">
+                <div class="section-title">거래 정보</div>
+                <ul>
+                    <li><a th:href="@{/write}">상품등록</a></li>
+<!--                    밑에 2개 기능 추가하고 링크 넣기-->
+                    <li><a>대여내역</a></li>
+                    <li><a>찜한 상품</a></li>
+                </ul>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="menu-section">
+                <div class="section-title">내 정보</div>
+                <ul>
+<!--                    기능 넣고 링크 추가하기-->
+                    <li><a>내 프로필</a></li>
+                    <li><a>계좌 관리</a></li>
+                    <li><a>배송지 관리</a></li>
+                    <li><a>거래 후기</a></li>
+                    <li><a>탈퇴하기</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

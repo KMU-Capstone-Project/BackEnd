@@ -1,15 +1,16 @@
 package com.capstone.spotlight.member;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
 @RequiredArgsConstructor
@@ -45,7 +46,7 @@ public class MemberController {
 
     @GetMapping("/login")
     public String login() {
-        var result = memberRepository.findByUsername("wkdwlsgh9622");
+        var result = memberRepository.findByUsername("test");
         System.out.println(result.get().getDisplayName());
 
         return "login.html";
@@ -53,7 +54,10 @@ public class MemberController {
 
     @GetMapping("/my-page")
     public String myPage(Authentication auth, Model model) {
-        var a = memberRepository.findById(1l);
+        CustomUser userDetails = (CustomUser) auth.getPrincipal();
+        Long userId = userDetails.id;
+
+        var a = memberRepository.findById(userDetails.id);
         var result = a.get();
         var data = new MemberDto(result.getUsername(), result.getDisplayName());
 
@@ -62,6 +66,17 @@ public class MemberController {
 
         return "mypage.html";
     }
+
+//    @GetMapping("/my-page")
+//    public ResponseEntity<MemberDto> myPage(Authentication auth) {
+//        var a = memberRepository.findById(1L);
+//        var result = a.get();
+//
+//        var data = new MemberDto(member.getUsername(), member.getdDisplayName());
+//
+//
+//    }
+
 
     @GetMapping("/test")
     public String test(Authentication auth) {

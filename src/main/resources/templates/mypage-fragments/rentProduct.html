@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div th:fragment="rentProduct">
+        <div class="rent-product-wrapper">
+            <div class="rent-title">대여 내역</div>
+
+            <div class="rent-tabs">
+                <span class="active">전체</span>
+                <span>대여중</span>
+                <span>예약중</span>
+                <span>반납완료</span>
+            </div>
+
+            <div class="rent-sort">
+                <span class="active">최신순</span>
+                <span>낮은가격순</span>
+                <span>높은가격순</span>
+            </div>
+
+            <div class="rent-list">
+                선택된 조건에 해당하는 상품이 없습니다.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

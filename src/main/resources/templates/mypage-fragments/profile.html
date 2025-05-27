@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div th:fragment="profile">
+        <div class="profile-box">
+            <div class="profile-header">
+                <h2 th:text="${userData.displayName}">자라나는 새싹님</h2>
+                <p>내 소개를 작성하고 신뢰도를 높여 보세요.</p>
+            </div>
+            <div class="profile-stats">
+                <div class="stat">
+                    <span>안전거래</span>
+                    <strong>0</strong>
+                </div>
+                <div class="stat">
+                    <span>거래후기</span>
+                    <strong>0</strong>
+                </div>
+                <div class="stat">
+                    <span>단골</span>
+                    <strong>0</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

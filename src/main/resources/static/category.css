@@ -1,0 +1,153 @@
+.mypage-category {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
+  position: relative; /* 드롭다운 위치 기준 */
+}
+
+.category-button {
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmer 2.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+.category-button .highlight {
+  color: #fadb00;
+}
+
+/* 드롭다운 메뉴 */
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dropdown-item {
+  font-size: 14px;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f7f7f7;
+}
+
+/* 나머지 메뉴 */
+.category-menu {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+  color: #222;
+  flex-wrap: wrap;
+}
+
+.category-menu span {
+  cursor: pointer;
+}
+
+/* ✅ 확장형 드롭다운 (3단 구성) */
+.expanded-dropdown {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px 24px;
+  display: flex;
+  gap: 60px;
+  z-index: 100;
+  width: 390px;
+}
+
+.category-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.category-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-group li {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.category-group li:hover {
+  color: #111;
+}
+
+/* ✅ 오른쪽 굵은 항목 스타일만 따로 지정 */
+.category-group.right-bold li {
+  font-weight: bold;
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 28px; /* ← 간격 넓힘 */
+}
+

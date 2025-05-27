@@ -1,0 +1,154 @@
+/* 맨 위에 추가 */
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+.mypage-wrapper {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mypage-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* 로고 스타일 */
+  .logo {
+    font-size: 32px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .black {
+    color: #222;
+  }
+
+  .light {
+    color: #fff;
+    background: linear-gradient(to right, #fff 0%, #fdfd96 20%, #ffef8f 40%, #fdfd96 60%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 2.5s linear infinite;
+  }
+
+  @keyframes shine {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+
+  /* 검색창 */
+  .search-box {
+    display: flex;
+    align-items: center;
+    background-color: #f4f6f8;
+    padding: 10px 14px;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 800px;
+  }
+
+  .search-icon {
+    margin-right: 8px;
+    color: #999;
+    font-size: 16px;
+  }
+
+  .search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+    flex: 1;
+    color: #333;
+  }
+
+  /* 내비게이션 링크 */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+
+  .nav-item {
+    font-size: 14px;
+    color: #222;
+
+    a:link {
+        color : black;
+        text-decoration: none;
+        }
+    a:visited {
+        color : black;
+        text-decoration: none;
+    }
+  }
+
+  .divider {
+    width: 1px;
+    height: 16px;
+    background-color: #ccc;
+  }
+
+  /* 반응형 */
+  @media (max-width: 768px) {
+    .mypage-header {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .nav-links {
+      justify-content: center;
+    }
+  }
+
+  .user-menu {
+    position: relative;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 36px;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+    min-width: 120px;
+    padding: 8px 0;
+  }
+
+  .dropdown-item {
+    padding: 8px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f2f2f2;
+  }
+
+  .divider-line {
+    display: inline-block;
+    height: 14px;
+    width: 1px;
+    background-color: #ccc;
+    margin: 0 8px;
+    vertical-align: middle;
+  }
