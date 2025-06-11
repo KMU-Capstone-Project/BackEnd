@@ -46,8 +46,8 @@ public class MemberController {
 
     @GetMapping("/login")
     public String login() {
-        var result = memberRepository.findByUsername("test");
-        System.out.println(result.get().getDisplayName());
+//        var result = memberRepository.findByUsername("test");
+//        System.out.println(result.get().getDisplayName());
 
         return "login.html";
     }

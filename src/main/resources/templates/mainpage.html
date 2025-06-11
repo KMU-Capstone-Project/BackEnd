@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-<div class="page-wrapper">
+<div class="header-wrapper">
     <!-- 공통 헤더 -->
     <div th:replace="~{main-fragments/header :: header}"></div>
 
@@ -59,7 +59,7 @@
 
 
                     <!--                        JSON 형식으로 보냄-->
-                    <span th:onclick="deleteItem([[${i.id}]])">🗑️</span>
+                    <span th:onclick="deleteItem([[${i.id}]])" sec:authorize="isAuthenticated()">🗑️</span>
                     <script>
                         function deleteItem(itemId) {
                             fetch('/item', {
@@ -82,6 +82,8 @@
 </div>
 
 <!-- 공통 푸터 -->
-<div th:replace="~{main-fragments/footer :: footer}"></div>
+<div class="footer-wrapper">
+    <div th:replace="~{main-fragments/footer :: footer}"></div>
+</div>
 </body>
 </html>

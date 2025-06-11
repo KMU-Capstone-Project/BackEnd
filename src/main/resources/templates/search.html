@@ -3,15 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>검색 결과</title>
+    <link rel="stylesheet" href="/search.css">
+    <link rel="stylesheet" th:href="@{/header.css}">
+    <link rel="stylesheet" th:href="@{/footer.css}">
+    <link rel="stylesheet" th:href="@{/category.css}">
+
 </head>
 <body>
-    <div class="search-main" th:each="i : ${searchData}">
-        <h2 th:text="${i.title}"></h2>
-        <p th:text="${i.price}"></p>
+<div class="header-wrapper">
+    <!-- 공통 헤더 -->
+    <div th:replace="~{main-fragments/header :: header}"></div>
+
+    <!-- 공통 카테고리 -->
+    <div th:replace="~{main-fragments/category :: category}"></div>
+
+</div>
+
+
+<div class="search-container">
+    <h2 class="search-title">🔍 검색 결과</h2>
+
+    <div class="search-grid">
+        <div class="search-item" th:each="i : ${searchData}">
+            <a th:href="@{'/detail/' + ${i.id}}" class="search-link">
+                <div class="search-image">
+                    <img th:if="${!i.images.isEmpty()}" th:src="${i.images[0].url}" alt="상품 이미지">
+                    <img th:if="${i.images.isEmpty()}" src="https://placehold.co/300x300" alt="기본 이미지">
+                </div>
+                <div class="search-info">
+                    <h3 th:text="${i.title}">상품명</h3>
+                    <p class="price" th:text="${#numbers.formatInteger(i.price, 3, 'COMMA')} + '원'">가격</p>
+                    <p class="brand" th:text="${i.brand}">브랜드</p>
+                    <p class="desc" th:text="${i.description}">상품 설명</p>
+                </div>
+            </a>
+        </div>
     </div>
+
+    <div th:if="${searchData.size() == 0}" class="no-result">
+        <p>검색 결과가 없습니다.</p>
+    </div>
+</div>
+
+<!-- 공통 푸터 -->
+<div class="footer-wrapper">
+    <div th:replace="~{main-fragments/footer :: footer}"></div>
+</div>
 
 </body>
 </html>

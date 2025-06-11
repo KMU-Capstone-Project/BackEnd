@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>카테고리 검색</title>
+    <link href="/category-items.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/header.css}">
+    <link rel="stylesheet" th:href="@{/footer.css}">
+    <link rel="stylesheet" th:href="@{/category.css}">
+</head>
+<body>
+<div class="header-wrapper">
+    <!-- 공통 헤더 -->
+    <div th:replace="~{main-fragments/header :: header}"></div>
+
+    <!-- 공통 카테고리 -->
+    <div th:replace="~{main-fragments/category :: category}"></div>
+
+</div>
+
+
+<div class="category-wrapper">
+    <h2 class="category-title" th:text="${category.name} + ' 상품 목록'">카테고리 이름 상품 목록</h2>
+
+    <div th:if="${items.size() > 0}" class="item-grid">
+        <div class="item-card" th:each="item : ${items}">
+            <a th:href="@{ '/detail/' + ${item.id} }" style="text-decoration: none">
+                <div class="item-image">
+                    <img th:if="${!item.images.isEmpty()}" th:src="${item.images[0].url}" alt="상품 이미지">
+                    <img th:if="${item.images.isEmpty()}" src="https://placehold.co/300x300" alt="기본 이미지">
+                </div>
+                <div class="item-info">
+                    <h3 th:text="${item.title}">상품 제목</h3>
+                    <p class="item-price" th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')} + '원'">가격</p>
+                    <p class="item-brand" th:text="'브랜드: ' + ${item.brand}">브랜드</p>
+                    <p class="item-description" th:text="${item.description}">설명</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div th:if="${items.size() == 0}" class="no-items">
+        <p>해당 카테고리에 상품이 없습니다.</p>
+    </div>
+</div>
+
+
+<!-- 공통 푸터 -->
+<div class="footer-wrapper">
+    <div th:replace="~{main-fragments/footer :: footer}"></div>
+</div>
+</body>
+</html>

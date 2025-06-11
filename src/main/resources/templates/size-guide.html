@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 공통 헤더/카테고리 CSS -->
+    <link rel="stylesheet" th:href="@{/header.css}">
+    <link rel="stylesheet" th:href="@{/category.css}">
+    <!-- 사이즈 가이드 전용 CSS -->
+    <link rel="stylesheet" th:href="@{/sizeGuide.css}">
+    <!-- 공통 푸터 CSS -->
+    <link rel="stylesheet" th:href="@{/footer.css}">
+</head>
+<body>
+<!-- 공통 헤더 -->
+<div th:replace="~{main-fragments/header :: header}"></div>
+
+<!-- 공통 카테고리 -->
+<div th:replace="~{main-fragments/category :: category}"></div>
+
+<!-- 사이즈 가이드 본문 -->
+<div class="size-guide-wrapper p-8 max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">👗 여자 옷 사이즈표 사용자 가이드</h1>
+
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-2">📌 소개</h2>
+        <p>이 가이드는 다양한 사이즈 체계를 비교하고 변환하며 정확한 측정법을 알려줍니다.</p>
+    </section>
+
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-2">✂️ 옷 사이즈 재는 법</h2>
+        <ul class="list-disc list-inside space-y-1">
+            <li><strong>가슴둘레</strong> : 겨드랑이 바로 아래, 가슴의 가장 풍만한 부분을 수평으로 측정</li>
+            <li><strong>허리둘레</strong> : 허리에서 가장 잘록한 부분을 수평으로 측정</li>
+            <li><strong>엉덩이둘레</strong> : 엉덩이에서 가장 넓은 부분을 수평으로 측정</li>
+            <li><strong>어깨너비</strong> : 어깨 끝에서 반대쪽 어깨 끝까지 직선으로 측정</li>
+            <li><strong>팔길이</strong> : 어깨 끝에서 팔꿈치 거쳐 손목까지 측정</li>
+            <li><strong>다리 안쪽 길이</strong> : 가랑이부터 발목까지 측정</li>
+        </ul>
+        <p class="mt-2 text-sm text-gray-600">
+            ※ 정확하게 측정할 경우, 속옷만 입고 줄자를 너무 조이거나 느슨하지 않게 측정하세요.
+        </p>
+    </section>
+
+    <br>
+    <h1 class="text-3xl font-bold mb-6 mt-16">👔 남자 옷 사이즈표 사용자 가이드</h1>
+
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-2">📌 소개</h2>
+        <p>이 가이드는 다양한 사이즈 체계를 비교하고 변환하며 정확한 측정법을 알려줍니다.</p>
+    </section>
+
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-2">✂️ 옷 사이즈 재는 법</h2>
+        <ul class="list-disc list-inside space-y-1">
+            <li><strong>가슴둘레</strong> : 겨드랑이 아래, 가장 두꺼운 부분 측정</li>
+            <li><strong>허리둘레</strong> : 배꼽 주변 가장 잘록한 부분 측정</li>
+            <li><strong>목둘레</strong> : 목 밑부분을 편안하게 측정 (손가락 1개 여유)</li>
+            <li><strong>팔길이</strong> : 어깨 끝 → 손목까지 (팔 살짝 구부리기)</li>
+            <li><strong>어깨너비</strong> : 어깨 끝과 끝을 직선으로 측정</li>
+            <li><strong>엉덩이둘레</strong> : 가장 튀어나온 부분을 수평 측정</li>
+        </ul>
+    </section>
+
+    <section class="mb-10">
+        <h2 class="text-xl font-semibold mb-2">🔍 치수 입력으로 사이즈 추천</h2>
+        <div class="flex flex-wrap items-center gap-4 mb-4">
+            <label for="gender">성별:</label>
+            <select id="gender" class="border px-2 py-1 rounded">
+                <option value="여성">여성</option>
+                <option value="남성">남성</option>
+            </select>
+
+            <label for="part">부위:</label>
+            <select id="part" class="border px-2 py-1 rounded">
+                <option value="가슴둘레">가슴둘레</option>
+                <option value="허리둘레">허리둘레</option>
+                <option value="엉덩이둘레">엉덩이둘레</option>
+            </select>
+
+            <label id="unit-label">수치 (cm):</label>
+            <input type="number" id="inputValue" class="border px-3 py-1 rounded w-32" />
+
+            <button id="recommendBtn" class="bg-black text-white px-4 py-1 rounded">추천 받기</button>
+            <button id="toggleUnitBtn" class="ml-4 px-3 py-1 border rounded">단위: cm → inch</button>
+        </div>
+        <div id="result" class="text-green-600 font-semibold"></div>
+    </section>
+</div>
+
+<!-- 공통 푸터 -->
+<div th:replace="~{main-fragments/footer :: footer}"></div>
+
+<script>
+    (() => {
+      const sizeGuides = {
+        여성: {
+          가슴둘레: [
+            { size: 'XS', value: 80 },
+            { size: 'S', value: 85 },
+            { size: 'M', value: 90 },
+            { size: 'L', value: 95 },
+            { size: 'XL', value: 100 }
+          ],
+          허리둘레: [
+            { size: 'XS', value: 60 },
+            { size: 'S', value: 65 },
+            { size: 'M', value: 70 },
+            { size: 'L', value: 75 },
+            { size: 'XL', value: 80 }
+          ],
+          엉덩이둘레: [
+            { size: 'XS', value: 85 },
+            { size: 'S', value: 90 },
+            { size: 'M', value: 95 },
+            { size: 'L', value: 100 },
+            { size: 'XL', value: 105 }
+          ]
+        },
+        남성: {
+          가슴둘레: [
+            { size: 'XS', value: 85 },
+            { size: 'S', value: 90 },
+            { size: 'M', value: 95 },
+            { size: 'L', value: 100 },
+            { size: 'XL', value: 105 }
+          ],
+          허리둘레: [
+            { size: 'XS', value: 70 },
+            { size: 'S', value: 75 },
+            { size: 'M', value: 80 },
+            { size: 'L', value: 85 },
+            { size: 'XL', value: 90 }
+          ],
+          엉덩이둘레: [
+            { size: 'XS', value: 88 },
+            { size: 'S', value: 93 },
+            { size: 'M', value: 98 },
+            { size: 'L', value: 103 },
+            { size: 'XL', value: 108 }
+          ]
+        }
+      };
+
+      let unit = 'cm';
+      const genderEl = document.getElementById('gender');
+      const partEl = document.getElementById('part');
+      const inputEl = document.getElementById('inputValue');
+      const resultEl = document.getElementById('result');
+      const toggleBtn = document.getElementById('toggleUnitBtn');
+      const unitLabel = document.getElementById('unit-label');
+
+      const convertToCm = (val) => (unit === 'inch' ? val * 2.54 : val);
+
+      function recommend() {
+        const input = parseFloat(inputEl.value);
+        if (isNaN(input)) {
+          resultEl.textContent = '올바른 숫자를 입력하세요.';
+          return;
+        }
+        const data = sizeGuides[genderEl.value][partEl.value];
+        const cmInput = convertToCm(input);
+        let best = data[0];
+        data.forEach(item => {
+          if (Math.abs(item.value - cmInput) < Math.abs(best.value - cmInput)) {
+            best = item;
+          }
+        });
+        resultEl.textContent = `${best.size} 사이즈 (기준 ${partEl.value} ${best.value}cm)`;
+      }
+
+      function toggleUnit() {
+        unit = unit === 'cm' ? 'inch' : 'cm';
+        unitLabel.textContent = `수치 (${unit}):`;
+        toggleBtn.textContent = unit === 'cm' ? '단위: cm → inch' : '단위: inch → cm';
+      }
+
+      document.getElementById('recommendBtn').addEventListener('click', recommend);
+      toggleBtn.addEventListener('click', toggleUnit);
+    })();
+</script>
+
+</body>
+</html>

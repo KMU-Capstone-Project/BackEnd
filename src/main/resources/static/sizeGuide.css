@@ -1,0 +1,148 @@
+/* 공통 폰트, 배경 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* 사이즈 가이드 전체 래퍼 */
+.mypage-wrapper {
+  padding: 20px;           /* 헤더/카테고리와 동일한 좌·우 여백 */
+}
+
+.size-guide-wrapper {
+  width: 100%;
+  max-width: 1000px;       /* header.css에서 사용하던 max-width와 동일 */
+  margin: 40px auto;       /* 상하 40px, 좌우 auto 중앙 정렬 */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;           /* 내부 여백 */
+}
+
+/* 제목 및 구분선 */
+.size-guide-wrapper h1 {
+  font-size: 28px;
+  color: #222;
+  margin-bottom: 12px;
+}
+
+.size-guide-wrapper hr {
+  border: none;
+  border-top: 2px solid #eee;
+  margin: 12px 0 24px;
+}
+
+/* 소제목 */
+.size-guide-wrapper h2 {
+  font-size: 20px;
+  color: #222;
+  margin: 24px 0 12px;
+}
+
+/* 본문 텍스트 & 리스트 */
+.size-guide-wrapper p {
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.size-guide-wrapper ul {
+  list-style: disc inside;
+  margin: 0 0 16px 0;
+  padding-left: 20px;
+}
+
+.size-guide-wrapper li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+/* 입력 폼 영역 */
+.size-guide-wrapper section {
+  border-top: 1px solid #eee;
+  padding-top: 24px;
+  margin-top: 24px;
+}
+
+.size-guide-wrapper label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.size-guide-wrapper input[type="number"],
+.size-guide-wrapper select {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  outline: none;
+  width: 120px;
+  margin-right: 16px;
+}
+
+/* 버튼 공통 */
+.size-guide-wrapper button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+/* 추천 받기 버튼 */
+#recommendBtn {
+  background-color: #fae100;
+  color: #000;
+}
+
+#recommendBtn:hover {
+  background-color: #f4d500;
+}
+
+/* 단위 토글 버튼 */
+#toggleUnitBtn {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+#toggleUnitBtn:hover {
+  background-color: #e0e0e0;
+}
+
+/* 결과 텍스트 */
+#result {
+  margin-top: 16px;
+  font-size: 16px;
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .size-guide-wrapper {
+    padding: 16px;
+  }
+
+  .size-guide-wrapper h1 {
+    font-size: 24px;
+  }
+
+  .size-guide-wrapper h2 {
+    font-size: 18px;
+  }
+
+  .size-guide-wrapper input[type="number"],
+  .size-guide-wrapper select {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .size-guide-wrapper section {
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+}

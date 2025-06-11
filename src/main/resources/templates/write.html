@@ -1,27 +1,53 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>대여 등록</title>
     <link href="/write.css" rel="stylesheet">
 </head>
 <body>
-    <form action="/add" method="POST">
-        <input name="title" placeholder="상품명 입력">
-        <input name="price" placeholder="가격 입력">
-        <input name="brand" placeholder="브랜드 입력">
+    <div class="container">
+        <form action="/add" method="POST">
+            <div class="image-section">
+                <label class="image-upload">
+                    <span>📷<br>0/10</span>
+                    <input type="file" onchange="getURL(this)">
+                </label>
+                <img src="" class="img-preview" style="display : none;">
+            </div>
+            <input name="title" placeholder="상품명">
+            <input type="hidden" name="imageUrl">
 
-        <input type="hidden" name="imageUrl">
+            <div class="category-box">
+                <label class="label"></label><br/>
+                <div class="category-scroll">
+                    <th:block th:each="category : ${categories}">
+                        <label>
+                            <input type="radio" name="categoryIds" th:value="${category.id}">
+                            <span th:text="${category.name}"></span><br/>
+                        </label>
+                    </th:block>
+                </div>
+            </div>
+            <br><input name="price" placeholder="₩ 판매 가격">
+            <br><input name="brand" placeholder="브랜드">
 
-        <button type="submit">전송</button>
-    </form>
+            <textarea id="description" name="description" maxlength="100" placeholder="- 구매 시기 (년, 월, 일)
+- 사용 기간
+- 하자 여부
+※ 촬영한 사진과 함께 상세 정보를 입력해주세요." rows="6" cols="50"></textarea>
 
-    <input type="file" onchange="getURL(this)">
-    <img src="">
+            <div class="note"><span id="charCount">0</span> / 100</div><br>
+
+            <button class="submit" type="submit">대여등록</button>
+        </form>
+    </div>
+
     <script>
+<!--        이미지 URL 전송-->
         async function getURL(e) {
             let name = encodeURIComponent(e.files[0].name)
             let result = await fetch('/presigned-url?filename=' + name)
@@ -39,12 +65,24 @@
 
             if (uploadRes.ok) {
                 // 이미지 src 설정
-                document.querySelector('img').src = uploadRes.url
+<!--                document.querySelector('img').src = uploadRes.url-->
+<!--                이미지 업로드 전에는 노출X-->
+                const imgTag = document.querySelector('.img-preview');
+                imgTag.src = result.split('?')[0];
+                imgTag.style.display = 'block';
 
                 // hidden input에 이미지 url 저장
                 document.querySelector('input[name="imageUrl"]').value = result.split('?')[0];
             }
         }
+
+<!--        상품 설명 글 카운트-->
+        const textarea = document.getElementById('description');
+        const charCount = document.getElementById('charCount');
+
+        textarea.addEventListener('input', () => {
+            charCount.textContent = textarea.value.length;
+        });
     </script>
 
 </body>

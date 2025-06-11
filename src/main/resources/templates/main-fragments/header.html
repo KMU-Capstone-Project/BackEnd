@@ -25,7 +25,7 @@
 
             <div class="nav-links">
                 <div class="nav-item" id="chatMenu" sec:authorize="isAuthenticated()">
-                    💬 채팅하기
+                    <a th:href="@{'/chat'}">💬 채팅하기</a>
                     <a th:href="@{'/write'}">글 쓰기</a>
 
                 </div>

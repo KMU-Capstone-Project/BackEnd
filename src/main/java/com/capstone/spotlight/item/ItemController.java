@@ -1,5 +1,7 @@
 package com.capstone.spotlight.item;
 
+import com.capstone.spotlight.category.Category;
+import com.capstone.spotlight.category.CategoryRepository;
 import com.capstone.spotlight.comment.Comment;
 import com.capstone.spotlight.comment.CommentRepository;
 import com.capstone.spotlight.image.Image;
@@ -25,6 +27,7 @@ public class ItemController {
     private final CommentRepository commentRepository;
     private final BlobStorageService blobStorageService;
     private final ImageRepository imageRepository;
+    private final CategoryRepository categoryRepository;
 
     @GetMapping("/")
     String getMain(Model model) {
@@ -38,30 +41,43 @@ public class ItemController {
 
         model.addAttribute("items", result);
 
+        // 카테고리 내역 가져오는 코드
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
         return "mainpage.html";
     }
 
 
     @GetMapping("/write")
-    String write() {
+    String write(Model model) {
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
         return "write.html";
     }
 
     @PostMapping("/add")
-    String addPost(String title, Integer price, String brand, @RequestParam String imageUrl) {
+    String addPost(String title, Integer price, String brand, String description, @RequestParam String imageUrl, @RequestParam List<Long> categoryIds) {
+        // item 정보 저장
         Item item = new Item();
         item.setTitle(title);
         item.setPrice(price);
         item.setBrand(brand);
+        item.setDescription(description);
 
         itemRepository.save(item);
 
-
+        // item 이미지 url 저장
         Image image = new Image();
         image.setUrl(imageUrl);
         image.setItem(item);
 
         imageRepository.save(image);
+
+        // item 카테고리 저장
+        List<Category> categories = categoryRepository.findAllById(categoryIds);
+        item.setCategories(categories);
+
+        itemRepository.save(item);
 
         return "redirect:/";
     }
@@ -134,6 +150,10 @@ public class ItemController {
 
         model.addAttribute("searchData", result);
 
+        // 카테고리 내역 가져오는 코드
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
+
         return "search.html";
     }
 
@@ -150,5 +170,10 @@ public class ItemController {
         return result;
     }
 
+    @GetMapping("/size-guide")
+    String getGuide() {
+
+        return "size-guide.html";
+    }
 
 }

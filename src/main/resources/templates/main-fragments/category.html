@@ -16,46 +16,25 @@
             </button>
 
             <div id="categoryDropdown" class="expanded-dropdown" style="display: none;">
-                <div class="category-group">
-                    <div class="category-title">여성의류</div>
-                    <ul>
-                        <li>티셔츠/캐쥬얼의류</li>
-                        <li>니트/스웨터/가디건</li>
-                        <li>원피스/정장</li>
-                        <li>블라우스/셔츠/남방</li>
-                        <li>조끼/베스트</li>
-                        <li>바지/팬츠/청바지</li>
-                        <li>스커트/치마</li>
-                        <li>자켓/코트</li>
-                        <li>패딩/야상/점퍼</li>
-                        <li>트레이닝복</li>
-                        <li>언더웨어/잠옷</li>
-                        <li>파티복/드레스/기타</li>
-                    </ul>
+                <div class="category-group" th:each="i: ${categories}">
+                    <div class="category-title">
+                        <p>
+                            <a th:href="@{'/category/' + ${i.id}}" th:text="${i.name}">카테고리 이름</a>
+                        </p>
+                    </div>
+<!--                    <ul>-->
+<!--                        <li>정장 (남성/여성)</li>-->
+<!--                        <li>드레스</li>-->
+<!--                        <li>예식용 한복</li>-->
+<!--                    </ul>-->
                 </div>
-                <div class="category-group">
-                    <div class="category-title">남성의류</div>
-                    <ul>
-                        <li>티셔츠/캐쥬얼의류</li>
-                        <li>니트/스웨터/가디건</li>
-                        <li>정장</li>
-                        <li>조끼/베스트</li>
-                        <li>셔츠/남방</li>
-                        <li>바지/팬츠/청바지</li>
-                        <li>자켓/코트</li>
-                        <li>패딩/야상/점퍼</li>
-                        <li>트레이닝복</li>
-                        <li>언더웨어/잠옷</li>
-                        <li>테마의상/기타</li>
-                    </ul>
-                </div>
-                <div class="category-group right-bold">
-                    <ul>
-                        <li><strong>수입명품</strong></li>
-                        <li><strong>패션의류</strong></li>
-                        <li><strong>패션잡화</strong></li>
-                    </ul>
-                </div>
+<!--                <div class="category-group right-bold">-->
+<!--                    <ul>-->
+<!--                        <li><strong>수입명품</strong></li>-->
+<!--                        <li><strong>패션의류</strong></li>-->
+<!--                        <li><strong>패션잡화</strong></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
             </div>
         </div>
 
