@@ -1,0 +1,125 @@
+/* 전체 레이아웃 */
+body {
+    background-color: #f7f7f7;
+}
+
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 채팅방 타이틀 */
+.container label {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* 메시지 표시 영역 */
+#msgArea {
+    min-height: 300px;
+    margin-bottom: 20px;
+    background-color: #f1f3f5;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+}
+
+/* 내 메시지 */
+.alert-secondary {
+    background-color: #e6f7ff;
+    color: #004085;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    text-align: right;
+}
+
+/* 상대방 메시지 */
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    text-align: left;
+}
+
+/* 입력창 스타일 */
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+#msg {
+    flex: 1;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    min-width: 550px;
+}
+
+#button-send {
+    background-color: #ffe600;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#button-send:hover {
+    background-color: #ffdc00;
+}
+
+.chat-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.chat-send-btn {
+    background-color: #ffe600;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.chat-bubble {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.chat-bubble.me {
+    background-color: #e6f7ff;
+    margin-left: auto;
+    text-align: right;
+}
+
+.chat-bubble.you {
+    background-color: #fff3cd;
+    margin-right: auto;
+    text-align: left;
+}
